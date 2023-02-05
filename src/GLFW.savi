@@ -1,3 +1,38 @@
 :module GLFW
-  :fun placeholder
-    True
+  :fun init!
+    if (_FFI.glfwInit() == 0) error!
+
+  :fun terminate
+    _FFI.glfwTerminate
+
+  :fun gl_clear_color(red F32, green F32, blue F32, alpha F32) None
+    _FFI.glClearColor(red, green, blue, alpha)
+
+  :fun gl_color4f(red F32, green F32, blue F32, alpha F32) None
+    _FFI.glColor4f(red, green, blue, alpha)
+
+  :fun gl_clear(bitfield I32)
+    _FFI.glClear(bitfield)
+
+  :fun poll_events
+    _FFI.glfwPollEvents
+
+:class GLFW.Window
+  :let _width I32
+  :let _height I32
+  :let _ptr CPointer(_FFI.Window.Opaque)
+
+  :new (width I32, height I32, title String'val)
+    @_width = width
+    @_height = height
+    @_ptr = _FFI.glfwCreateWindow(width, height, title.cpointer, CPointer(U8).null, CPointer(U8).null)
+
+  :fun make_context_current None
+    _FFI.glfwMakeContextCurrent(@_ptr)
+
+  :fun should_close Bool
+    if (_FFI.glfwWindowShouldClose(@_ptr) == 0) (False | True)
+
+  :fun swap_buffers None
+    _FFI.glfwSwapBuffers(@_ptr)
+

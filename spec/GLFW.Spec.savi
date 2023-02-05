@@ -1,6 +1,0 @@
-:class GLFW.Spec
-  :is Spec
-  :const describes: "GLFW"
-
-  :it "has a placeholder method for demonstrating testing"
-    assert: GLFW.placeholder == True
