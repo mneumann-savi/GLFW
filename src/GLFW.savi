@@ -1,0 +1,3 @@
+:module GLFW
+  :fun placeholder
+    True
