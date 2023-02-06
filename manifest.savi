@@ -5,3 +5,6 @@
   :copies GLFW
   :sources "example/*.savi"
 
+  :dependency GL v0
+    :from "github:mneumann-savi/GL"
+

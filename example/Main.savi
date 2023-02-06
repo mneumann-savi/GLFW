@@ -13,8 +13,8 @@
   :be _iter
     @window.make_context_current
     if (@window.should_close) return
-    GLFW.gl_clear(I32[0x00004000])
-    GLFW.gl_clear_color(@r, 0.0, F32[1.0] - @r, 0.5)
+    GL.clear(I32[0x00004000])
+    GL.clear_color(@r, 0.0, F32[1.0] - @r, 0.5)
 
     @r = @r + @inc
     if (@r > 1.0) (
