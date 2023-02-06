@@ -1,6 +1,4 @@
-
 :ffi_link_lib glfw
-:ffi_link_lib GL
 
 :struct _FFI.Window.Opaque
 
