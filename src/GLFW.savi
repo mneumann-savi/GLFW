@@ -27,3 +27,9 @@
   :fun swap_buffers None
     _FFI.glfwSwapBuffers(@_ptr)
 
+  :fun cursor_pos Pair(F64, F64)
+    xpos = F64[0.0]
+    ypos = F64[0.0]
+    _FFI.glfwGetCursorPos(@_ptr, stack_address_of_variable xpos, stack_address_of_variable ypos)
+    Pair(F64, F64).new(xpos, ypos)
+

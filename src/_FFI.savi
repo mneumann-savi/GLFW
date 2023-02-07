@@ -19,3 +19,4 @@
   :ffi glfwSwapBuffers(window CPointer(_FFI.Window.Opaque)) None
   :ffi glfwWindowShouldClose(window CPointer(_FFI.Window.Opaque)) I32
 
+  :ffi glfwGetCursorPos(window CPointer(_FFI.Window.Opaque), xpos CPointer(F64), ypos CPointer(F64)) None

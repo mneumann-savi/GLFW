@@ -2,12 +2,16 @@
   :let window GLFW.Window
   :var r F32
   :var inc F32
+  :let env Env
+  :var cursorpos Pair(F64, F64)
 
   :new (env Env)
     try GLFW.init!
+    @env = env
     @window = GLFW.Window.new(640, 480, "Hello World")
     @r = 0.0
     @inc = 0.001
+    @cursorpos = @window.cursor_pos
     @_iter
 
   :be _iter
@@ -31,7 +35,16 @@
 
     @window.swap_buffers
     GLFW.poll_events
+    @_report_changed_cursor
     @_iter
+
+  :fun ref _report_changed_cursor
+    newcursorpos = @window.cursor_pos
+    if (@cursorpos.first != newcursorpos.first ||
+      @cursorpos.second != newcursorpos.second) (
+      @env.out.print("Cursor changed \(newcursorpos.first) \(newcursorpos.second)")
+    )
+    @cursorpos = newcursorpos
 
   :be _dispose
     GLFW.terminate
